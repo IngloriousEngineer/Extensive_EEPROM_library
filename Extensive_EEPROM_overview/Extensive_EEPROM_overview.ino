@@ -1,9 +1,9 @@
 /*
 Extensive TWI/I2C EEPROM Library - for 24LCxxx devices
-version:        0.4.2
+version:        0.5
 target device:  Microchip 24LC256 or similar
 compatibility:  designed with Arduino Due
--> Ver. 0.4.2:  New license.
+-> Ver. 0.5:    New functionality.
 author:         Dennis Schweer (Inglorious Engineer)
 
 Copyright (c) 2015 Dennis Schweer
