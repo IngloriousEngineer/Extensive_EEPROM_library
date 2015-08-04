@@ -43,8 +43,8 @@ run on 8-bit Arduinos !!!
 
     
 Planned for future releases:
-  -erase byte
-  -erase page
+  -erase byte  --> ADDED IN V0.5_beta
+  -erase page  --> ADDED IN V0.5_beta
   -erase complete EEPROM
   -read/write with autocorrection of "startaddress"-value
 */

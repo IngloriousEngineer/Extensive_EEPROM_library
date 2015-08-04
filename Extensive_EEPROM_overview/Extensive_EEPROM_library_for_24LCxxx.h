@@ -105,6 +105,55 @@ void extEEPROMwriteSensor(int EEPROM_addr, int addr, int data)
   delay(6);                             // wait for a successful write
 }
 
+/////////////////  DELETE  /////////////////////
+  
+void extEEPROMdelete(int EEPROM_addr, int addr)
+{
+  Wire.beginTransmission(EEPROM_addr);  //Start transmission to EEPROM
+  Wire.write(highByte(addr));           // send high byte of address  
+  Wire.write(lowByte(addr));            // send low byte of address
+  Wire.write(0xFF);                     // delete data
+  Wire.endTransmission(true);           // stop transmitting
+  delay(6);                             // wait for a successful write
+}
+
+void extEEPROMdeletePage(int EEPROM_addr, int addr, int amount)
+{
+  Wire.beginTransmission(EEPROM_addr);  //Start transmission to EEPROM
+  Wire.write(highByte(addr));           // send high byte of address  
+  Wire.write(lowByte(addr));            // send low byte of address  
+  for(int i = 0; i<amount; i++)         // delete array from EEPROM
+  {
+    Wire.write(0xFF);  
+  }
+  Wire.endTransmission(true);           // stop transmitting
+  delay(6);                             // wait for a successful write
+}
+
+void extEEPROMdeleteInt(int EEPROM_addr, int addr)
+{
+  Wire.beginTransmission(EEPROM_addr);  //Start transmission to EEPROM
+  Wire.write(highByte(addr));           // send high byte of address  
+  Wire.write(lowByte(addr));            // send low byte of address
+  Wire.write(0xFF);                     // delete lowest byte of 32 bit integer
+  Wire.write(0xFF);                     // delete 2nd lowest byte of 32 bit integer
+  Wire.write(0xFF);                     // delete 2nd highest byte of 32 bit integer
+  Wire.write(0xFF);                     // delete highest byte of 32 bit integer
+  Wire.endTransmission(true);           // stop transmitting
+  delay(6);                             // wait for a successful write
+}
+
+void extEEPROMdeleteSensor(int EEPROM_addr, int addr)
+{
+  Wire.beginTransmission(EEPROM_addr);  //Start transmission to EEPROM
+  Wire.write(highByte(addr));           // send high byte of address  
+  Wire.write(lowByte(addr));            // send low byte of address
+  Wire.write(0xFF);                     // send low byte of 12 bit integer
+  Wire.write(0xFF);                     // send high byte of 12 bit integer
+  Wire.endTransmission(true);           // stop transmitting
+  delay(6);                             // wait for a successful write
+}
+
 /////////////////  READ  /////////////////////
 
 byte extEEPROMread(int EEPROM_addr, int addr)
